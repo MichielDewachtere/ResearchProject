@@ -1,6 +1,8 @@
+# Folders
 bin/
-TempFiles/
 .vs/
+x64/
+ReasearchProject/x64/
 
 # Prerequisites
 *.d
