@@ -55,3 +55,30 @@ struct Room
 	Color4f fillColor{ 210.f / 255,180.f / 255,140.f / 255,1 };
 	RoomType type;
 };
+
+struct Agent
+{
+	Agent() = default;
+	Agent(const Point2f position)
+	{
+		body.left = position.x;
+		body.bottom = position.y;
+	}
+
+	void Draw() const
+	{
+		SetColor(bodyColor);
+		FillRect(body);
+		SetColor(headColor);
+		FillRect(head);
+	}
+
+	Rectf body{ 0,0,5,12 };
+	Color4f bodyColor{ 1,0,0,1 };
+
+	Rectf head{ body.left, body.bottom + body.height, 5, 5 };
+	Color4f headColor{ 0,1,0,1 };
+
+	Room apartment{};
+	Room workStation{};
+};
