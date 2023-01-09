@@ -27,11 +27,13 @@ Game::~Game()
 
 void Game::Initialize()
 {
+	int amountOfFloors{};
 	int amountOfApartments{};
 	int amountOfOffices{};
 	int amountOfCafes{};
+	int amountOfAgents{};
+
 	float bottom = 20;
-	int amountOfFloors{};
 
 	while (amountOfApartments < 1000)
 	{
@@ -49,18 +51,40 @@ void Game::Initialize()
 
 			totalLength += (int)newApartment->bounds.width;
 
-			newApartment->type = static_cast<RoomType>(rand() % 9);
-				++amountOfApartments;
+			//newApartment->type = static_cast<RoomType>(rand() % 9);
 
-			switch (newApartment->type) {
-			case RoomType::apartment:
+			//switch (newApartment->type) {
+			//case RoomType::apartment:
+			//	newApartment->fillColor = Color4f(210.f / 255, 180.f / 255, 140.f / 255, 1);
+			//	++amountOfApartments;
+			//	break;
+			//case RoomType::office:
+			//	newApartment->fillColor = Color4f(234.f / 255, 77.f / 255, 97.f / 255, 1);
+			//	++amountOfOffices;
+			//	break;
+			//case RoomType::cafe:
+			//	newApartment->fillColor = Color4f(79.f / 255, 232.f / 255, 83.f / 255, 1);
+			//	++amountOfCafes;
+			//	break;
+			//}
+
+			int roomType = rand() % 9;
+			if (roomType > 3 || roomType == 0)
+				roomType = 1;
+
+			switch (roomType) {
+			case 1:
+				newApartment->type = RoomType::apartment;
 				newApartment->fillColor = Color4f(210.f / 255, 180.f / 255, 140.f / 255, 1);
+				++amountOfApartments;
 				break;
-			case RoomType::office:
+			case 2:
+				newApartment->type = RoomType::office;
 				newApartment->fillColor = Color4f(234.f / 255, 77.f / 255, 97.f / 255, 1);
 				++amountOfOffices;
 				break;
-			case RoomType::cafe:
+			case 3:
+				newApartment->type = RoomType::cafe;
 				newApartment->fillColor = Color4f(79.f / 255, 232.f / 255, 83.f / 255, 1);
 				++amountOfCafes;
 				break;
@@ -86,10 +110,26 @@ void Game::Initialize()
 		}
 	}
 
+
+	for (const auto& apartment : m_ApartmentPtrs)
+	{
+		if (apartment->type == RoomType::apartment)
+		{
+			constexpr float offSet = 10;
+			Point2f position;
+
+			position.x = apartment->bounds.left + rand() % (int)(apartment->bounds.width/* - offSet*/);
+			position.y = apartment->bounds.bottom;
+			++amountOfAgents;
+			m_AgentPtrs.push_back(new Agent(position));
+		}
+	}
+
 	std::cout << "amount of floors: " << amountOfFloors << '\n';
 	std::cout << "amount of apartments: " << amountOfApartments << '\n';
 	std::cout << "amount of offices: " << amountOfOffices << '\n';
 	std::cout << "amount of cafes: " << amountOfCafes << '\n';
+	std::cout << "amount of agents: " << amountOfAgents << '\n';
 }
 
 void Game::Cleanup()
@@ -99,6 +139,9 @@ void Game::Cleanup()
 
 	for (const auto& elevator : m_ElevatorPtrs)
 		delete elevator;
+
+	for (const auto& agent : m_AgentPtrs)
+		delete agent;
 
 	delete m_pCamera;
 }
@@ -131,6 +174,10 @@ void Game::Draw() const
 		for (const auto& elevator : m_ElevatorPtrs)
 		{
 			elevator->Draw();
+		}
+		for (const auto& agent : m_AgentPtrs)
+		{
+			agent->Draw();
 		}
 	}
 	glPopMatrix();

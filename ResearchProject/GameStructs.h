@@ -63,6 +63,7 @@ struct Agent
 	{
 		body.left = position.x;
 		body.bottom = position.y;
+		head = Rectf(body.left, body.bottom + body.height, 13, 13);
 	}
 
 	void Draw() const
@@ -73,11 +74,12 @@ struct Agent
 		FillRect(head);
 	}
 
-	Rectf body{ 0,0,5,12 };
-	Color4f bodyColor{ 1,0,0,1 };
+	Rectf body{ 0,0,13,30 };
+	Color4f bodyColor{ (float)(rand() % 2),(float)(rand() % 2),(float)(rand() % 2),1 };
 
-	Rectf head{ body.left, body.bottom + body.height, 5, 5 };
-	Color4f headColor{ 0,1,0,1 };
+	Rectf head{  };
+//	Color4f headColor{ 229 / 255.f,194 / 255.f,152 / 255.f,1 };
+	Color4f headColor{ 255 / 255.f,206 / 255.f,180 / 255.f,1 };
 
 	Room apartment{};
 	Room workStation{};
