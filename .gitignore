@@ -1,10 +1,10 @@
 # Folders
 bin/
 .vs/
-x64/
-ReasearchProject/x64/
-Debug/
-Release/
+x64/Debug/
+x64/Release/
+ReasearchProject/x64/Debug/
+ReasearchProject/x64/Release/
 
 # Prerequisites
 *.d
