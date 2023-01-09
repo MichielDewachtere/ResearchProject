@@ -3,6 +3,8 @@ bin/
 .vs/
 x64/
 ReasearchProject/x64/
+Debug/
+Release/
 
 # Prerequisites
 *.d
