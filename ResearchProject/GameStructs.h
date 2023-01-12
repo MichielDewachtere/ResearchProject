@@ -59,7 +59,6 @@ struct Room
 struct Agent
 {
 	Agent() = default;
-	Agent(const Point2f position)
 	~Agent()
 	{
 		delete pWorkStation;
