@@ -1,4 +1,14 @@
-﻿  Game.cpp
+﻿  pch.cpp
+  Core.cpp
+  Game.cpp
+  main.cpp
+  Matrix2x3.cpp
+  structs.cpp
+  Texture.cpp
+  utils.cpp
+  Vector2f.cpp
+  Vector3.cpp
+  Generating Code...
   ResearchProject.vcxproj -> C:\2022-2023\_GameplayProgramming\_EXAM\GPP_Exam\ResearchTopic\ResearchProject\x64\Debug\ResearchProject.exe
   COPY THE DLL FILES
   0 File(s) copied
