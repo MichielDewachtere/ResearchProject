@@ -60,10 +60,25 @@ struct Agent
 {
 	Agent() = default;
 	Agent(const Point2f position)
+	~Agent()
 	{
+		delete pWorkStation;
+		delete pApartment;
+	}
+	Agent(const Room& house)
+	{
+		constexpr float offSet = 10;
+		Point2f position;
+
+		position.x = house.bounds.left + rand() % (int)(house.bounds.width - offSet);
+		position.y = house.bounds.bottom;
+
+
 		body.left = position.x;
 		body.bottom = position.y;
 		head = Rectf(body.left, body.bottom + body.height, 13, 13);
+
+		pApartment = new Room(house);
 	}
 
 	void Draw() const
@@ -78,9 +93,11 @@ struct Agent
 	Color4f bodyColor{ (float)(rand() % 2),(float)(rand() % 2),(float)(rand() % 2),1 };
 
 	Rectf head{  };
-//	Color4f headColor{ 229 / 255.f,194 / 255.f,152 / 255.f,1 };
 	Color4f headColor{ 255 / 255.f,206 / 255.f,180 / 255.f,1 };
 
-	Room apartment{};
-	Room workStation{};
+	Room* pApartment{};
+	Room* pWorkStation{};
+	std::queue<std::pair<Point2f, int>> schedule{};
+
+	bool relocate;
 };
