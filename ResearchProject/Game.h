@@ -35,11 +35,20 @@ private:
 	std::vector<Room*> m_ApartmentPtrs;
 	std::vector<Elevator*> m_ElevatorPtrs;
 	std::vector<Agent*> m_AgentPtrs;
-	//std::vector<Cafe*> m_CafePtrs;
-	//std::vector<Office*> m_OfficePtrs;
+
+	int m_Time{};
+	float m_FPSTimer{};
 
 	// FUNCTIONS
 	void Initialize( );
 	void Cleanup( );
 	void ClearBackground( ) const;
+
+	Point2f GoWork(const Agent& agent);
+	Point2f GoHome(const Agent& agent);
+
+	Point2f GoToCafe(const Agent& agent, const float probability);
+	Point2f GoVisitRetail(const Agent& agent, const float probability);
+
+	Room* GetClosestCafe(const Agent& agent);
 };
