@@ -16,6 +16,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{1ea791e6-03da-47aa-986d-3228ae460553}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AStar">
+      <UniqueIdentifier>{6ecea9db-eac9-432c-9a61-42b6228e9f2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="MathUtils.h">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h">
+      <Filter>AStar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

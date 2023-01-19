@@ -160,6 +160,7 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStructs.h" />
+    <ClInclude Include="AStar.h" />
     <ClInclude Include="MathUtils.h" />
     <ClInclude Include="Matrix2x3.h" />
     <ClInclude Include="pch.h" />
