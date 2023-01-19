@@ -45,12 +45,14 @@ void Game::Initialize()
 
 		while (!floorIsFilled)
 		{
+			constexpr float maxLength = 1140;
+
 			auto* newApartment = new Room();
 
 			newApartment->bounds.left = (float)totalLength;
 			newApartment->bounds.bottom = bottom;
 
-			newApartment->bounds.width = 100.f + (float)((rand() % 5) * 50);
+			newApartment->bounds.width = 100.f + (rand() % 5) * 50.f;
 
 			totalLength += (int)newApartment->bounds.width;
 
@@ -76,12 +78,12 @@ void Game::Initialize()
 				break;
 			}
 
-			if (totalLength >= 1220)
+			if (totalLength >= maxLength)
 			{
-				auto* newElevator = new Elevator(Point2f{ 1220,bottom });
+				auto* newElevator = new Elevator(Point2f{ maxLength,bottom });
 				m_ElevatorPtrs.push_back(newElevator);
 
-				const float extra = (float)totalLength - 1220.f;
+				const float extra = (float)totalLength - maxLength;
 
 				newApartment->bounds.width -= extra;
 
@@ -175,7 +177,7 @@ void Game::Update(float elapsedSec)
 		// 0 -> night (= +0u)
 		// 1 -> day (= +8u)
 		// 2 -> evening (= + 16u)
-
+  
 		for (const auto& agent : m_AgentPtrs)
 		{
 			while (agent->schedule.empty() == false)

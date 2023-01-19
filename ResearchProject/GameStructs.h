@@ -28,7 +28,7 @@ struct Elevator
 		FillRect(elevator);
 	}
 
-	Rectf elevator{ 0,0,30,75 };
+	Rectf elevator{ 0,0,100,100 };
 	const Color4f outlineColor{ 0,0,0,1 };
 	const Color4f fillColor{ 144.f / 255, 144.f / 255, 144.f / 255, 1 };
 };
@@ -50,7 +50,7 @@ struct Room
 		FillRect(bounds);
 	}
 
-	Rectf bounds{ 0,0,150,75 };
+	Rectf bounds{ 0,0,0,100 };
 	const Color4f outlineColor{ 0,0,0,1 };
 	Color4f fillColor{ 210.f / 255,180.f / 255,140.f / 255,1 };
 	RoomType type;
@@ -66,7 +66,7 @@ struct Agent
 	}
 	Agent(const Room& house)
 	{
-		constexpr float offSet = 10;
+		constexpr float offSet = 15;
 		Point2f position;
 
 		position.x = house.bounds.left + rand() % (int)(house.bounds.width - offSet);
@@ -75,7 +75,7 @@ struct Agent
 
 		body.left = position.x;
 		body.bottom = position.y;
-		head = Rectf(body.left, body.bottom + body.height, 13, 13);
+		head = Rectf(body.left, body.bottom + body.height, 15, 15);
 
 		pApartment = new Room(house);
 	}
@@ -88,7 +88,7 @@ struct Agent
 		FillRect(head);
 	}
 
-	Rectf body{ 0,0,13,30 };
+	Rectf body{ 0,0,15,40 };
 	Color4f bodyColor{ (float)(rand() % 2),(float)(rand() % 2),(float)(rand() % 2),1 };
 
 	Rectf head{  };
